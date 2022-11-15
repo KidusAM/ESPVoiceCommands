@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.nio.ByteBuffer
 
 private const val SPEECH_REQUEST_CODE = 12241
-private const val esp_url = " http://893f-160-39-204-35.ngrok.io"
+private const val esp_url = "http://129.236.217.19"
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
@@ -78,7 +78,9 @@ class MainActivity : AppCompatActivity() {
     fun sendCommand(command: String) {
         Log.e(TAG, "making the request")
         val apiInterface = retrofit.create(APIInterface::class.java)
-        val call = apiInterface.post_command(command)
+        val command_str : String = command
+        Log.e(TAG, command_str)
+        val call = apiInterface.post_command(command_str)
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
